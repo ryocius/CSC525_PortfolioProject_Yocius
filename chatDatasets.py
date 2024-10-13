@@ -21,12 +21,10 @@ def extractTextFromPdf(path):
         for page in pdf:
             text += page.get_text()
 
-    # Regex pattern to split by section numbers (e.g., '1.1', '2.3')
     section_pattern = re.compile(r'\d+\.\d+.*')
     sections = section_pattern.split(text)
     headers = section_pattern.findall(text)
 
-    # Combine headers with their corresponding sections
     combined_sections = [
         "{} {}".format(header, text.replace('\n', ' '))
         for header, text in zip(headers, sections[1:])
@@ -122,10 +120,8 @@ def generateQaPairs():
 
     pairsFile = "qaPairs.csv"
     if not os.path.exists(pairsFile):
-        # Remove NaN values from headers
         headers = [header for header in headers if pd.notna(header) and header.strip()]
 
-        # Remove NaN values from sections
         sections = [section for section in sections if pd.notna(section) and section.strip()]
 
         qaPairs = createQaPairs(headers, sections)
