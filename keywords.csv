@@ -1,0 +1,614 @@
+text
+about simetrixsimplis documentation
+html documentation
+pdf documentation 
+what is simetrix 
+what is simplis
+why simulate
+system requirements 
+operating system 
+hardware 
+recommended system
+multicore processors
+acknowledgements
+quick start 
+introduction
+examples and tutorialswhere are they 
+simulation for the novice
+tutorial a simple ready to run circuit 
+tutorial a simple smps circuit 
+tutorial installing third party models
+notes
+getting started
+simulation modessimetrix or simplis
+using the schematic editor
+creating a schematic 
+circuit rules 
+analysis modes
+overview 
+setting up a simetrix simulaton 
+setting up a simplis simulation
+manual entry of simulator commands 
+running the simulator
+simetrix 
+simplis 
+plotting simulation results
+overview 
+fixed probes 
+random probes i
+simetrix gui environment
+overview 
+interaction 
+directory viewer 
+interface styles 
+schematic editor
+fundamentals 
+schematic windows and sheets 
+schematic editor window
+editing operations
+wiring
+bus connections 
+copying to the clipboard 
+annotating a schematic 
+assigning part references
+checking the schematic 
+ schematic preferences 
+ adding and removing worksheets 
+ finding and specifying net names
+hierarchical schematic entry 
+topdown method
+bottomup method
+navigating hierarchical designs 
+placingfull vs relative path
+connecting buses in a hierarchy 
+global nets
+global pins
+passing parameters through a hierarchy
+missing hierarchical blocks 
+ highlighting
+ copying a hierarchy
+schematic annotations
+line based annotations 
+shape based annotations
+image annotations
+text annotations 
+title block
+schematic styles 
+style editor
+simplied style editing and creation
+advanced style settings 
+schematic grouping 
+group breaking
+schematic printing
+printing a single schematic sheet
+printing a hierarchical schematic
+file operations
+saving
+exporting schematic graphics
+schematic file formats and compatibility with earlier versions
+autosave 
+properties 
+overview 
+what is a property
+template property
+editing properties in a schematic 
+restoring properties 
+template property 
+overview 
+template property format
+template scripts 
+ ltspice compatibility
+ symbols for ltspice schematics 
+ opening ltspice schematics 
+ simulating ltspice schematics 
+ saving ltspice schematics 
+ ltspice text and property styles
+ ltspice conguration
+ load component values
+ overview
+ menus
+ conguration file format 
+ creating a conguration file from the schematic 
+ loading a conguration file
+ handling shorted or disabled components
+ loading xml content 
+ automating load component values with command line switches 
+ automating load component values with a script
+ cmos ic design
+ mosfet symbols 
+ edit length and width 
+ automatic area and perimeter calculation
+ editing the mos symbols 
+ further information 
+ how symbols are stored
+ summary of simulator devices
+symbol editor and library 
+creating schematic symbols 
+graphical symbol editor 
+notes 
+symbol editor window
+the elements of a symbol
+creating a new symbol 
+editing an existing symbol 
+drawing straight line segments 
+drawing arcs circles and ellipses 
+placing and dening pins
+dening properties
+ saving symbols
+creating a symbol from a script 
+symbol library manager 
+operations
+editing system symbol libraries 
+how to find and place parts 
+part selector
+part search
+model library browser
+selecting a model by specication
+viewing and editing models
+numbered parts in simplis 
+circuit stimulus
+waveform generator 
+pwl source 
+power supplyfixed current source 
+ac source
+universal source 
+digital sources
+other sources 
+generic parts 
+simplis primitive parts 
+saturable inductors and transformers
+ideal transformers
+dc transformers 
+coupling factor 
+mutual inductors 
+resistors 
+ideal capacitors and inductors
+innite capacitors and inductors 
+ multilevel capacitors 
+ electrolytic capacitors 
+ potentiometer
+ lossless transmission line
+ lossy transmission line
+ ac table for sparameters and yparameters 
+ fixed voltage and current sources 
+ controlled sources 
+ voltage controlled switch 
+ switch with hysteresis 
+ delayed switch 
+ parameterised opamp 
+ parameterised optocoupler
+ parameterised comparator 
+ vco
+ veriloga library
+ isoandwaveform sources 
+ generic adcs and dacs 
+ generic digital devices
+ arbitrary nonlinear passive devices 
+creating models
+overview 
+creating soft recovery diode models
+creating power inductor models 
+digitising data sheet curves 
+subcircuits
+overview 
+creating a subcircuit from a schematic 
+calling a subcircuit in a schematic 
+ special parts 
+ initial conditions
+ nodesets
+ parameters and expressions
+ example 
+analog behavioural modelling
+introduction
+nonlinear transfer function 
+expression
+examples 
+veriloga implementation
+laplace transfer function
+overview 
+user interface 
+laplace expression
+device type
+implementation
+impulse response
+device library parts management
+ using model library browser 
+ installing models
+ overview
+ procedure
+ full model installation procedure 
+ removing model libraries 
+ part selector 
+ overview
+ category editor 
+ editing the part selector catalog
+ advanced topics
+ associating multiple models with symbols
+ embedded association 
+ catalog files
+ importing models to a schematic 
+ sundry topics
+ lib control
+ drag and drop to schematic
+ library diagnostics 
+ local models
+ library indexing mechanism
+ duplicate model names
+ using ltspice models
+analysis modes
+ running simulations
+ overview
+ starting pausing and aborting analyses 
+ running analyses in asynchronous mode 
+ running an analysis on a netlist 
+ simulation and multicore processors 
+ transient analysis 
+ setting up a transient analysis
+ restarting a transient run 
+ transient snapshots
+ operating point 
+ sweep modes
+ device sweep
+ temperature
+ model parameter
+ parameter
+ frequency
+ monte carlo
+ sensitivityworstcase 
+ setting up a swept analysis
+ dc sweep
+ setting up a dc sweep 
+ example
+ ac sweep
+ setting up an ac sweep
+ example
+ noise analysis 
+ setting up an ac noise analysis
+ plotting results of noise analysis 
+ example
+ example
+ real time noise
+ setting up a real time noise analysis
+ transfer function
+ setting up a transfer function analysis
+ plotting transfer function analysis results
+ example
+dc sensitivity
+ setting up a dc sensitivity analysis
+convergence
+ convergence options
+ convergence failure report
+ convergence static analysis
+data handling and keeps
+ scope options 
+ signals options 
+ to add a voltage keep to a schematic 
+ to add a current keep to a schematic 
+simulator options
+ setting simulator options 
+multistep analyses 
+ setting up a multistep analysis
+ using multiple cores for multistep analyses 
+ example
+ example
+safe operating area testing
+ overview
+ dening simple limit tests
+ advanced soa limit testing
+simplis analysis modes
+ transient analysis 
+ setting up a transient analysis
+ periodic operating point pop 
+ setting up a pop analysis 
+ ac analysis 
+ setting up an ac analysis 
+ simplis options
+ multistep and monte carlo 
+ overview
+ comparison between simetrix and simplis 
+ setting up a simplis multistep parameter analysis 
+ setting up a simplis monte carlo analysis 
+ multicore multistep simplis analyses 
+ tolerances and distribution functions 
+ monte carlo log file 
+ monte carlo seed values
+ performance analysis and histograms 
+ backannotation
+ overview
+ how to backannotate a schematic
+ disableenable initial conditions 
+ backannotation errors 
+ editing backannotated initial conditions 
+ how does it work 
+ hierarchical blocks and subcircuits 
+graphs probes and data analysis
+ elements of the graph window 
+ main window
+ windows and tabbed sheets
+ graph toolbar 
+ fixed vs random
+ fixed probes
+ fixed probe options
+ curve history
+ fixed bus probe options
+ using fixed probes in hierarchical designs
+ adding fixed probes after a run has started 
+ percycle probes
+ xy probes 
+ bode plot probe with measurements
+ bode plot probebasic version
+ fourier analysis
+ arbitrary fixed probe 
+ changing update period and start delay 
+ auto probe colouring 
+ random probes 
+ general behaviour 
+ functions
+ notes on probe functions 
+ plotting noise analysis results
+ plotting transfer function analysis results
+ fourier analysis
+ probing buses 
+ bus probe options 
+ plotting an arbitrary expression
+ curve arithmetic
+ using random probes in hierarchical designs
+ previous results
+ updating curves
+ overview
+ update curves 
+ plot journals
+ graph layout
+ autoaxis feature
+ manually creating axes and grids 
+ selecting axes 
+ stacking curves to multiple grids 
+ moving curves to different axis or grid 
+ detached xaxes
+ deleting axes
+ editing axes
+ reordering grids and digital axes 
+ curve operations
+ selecting curves
+ deleting curves
+ hiding and showing curves
+ retitling curves
+ highlighting curves
+ moving and copying curves between graphs 
+ graph cursors
+ overview
+ cursor operations 
+ additional cursors 
+ cursor readout 
+ cursor functions
+ curve measurements
+ overview
+ available measurements
+ using the dene measurement gui
+ measurement denitions manager 
+ repeating the same measurement 
+ applying measurements to fixed probes 
+ notes on curve measurement algorithms 
+ plots from curves
+efciency calculator
+ overview
+ step place power probes 
+ stepdene input and output probes
+ stepcalculate efciency
+zoom and scroll
+ zooming with the mouse
+ zooming with the keyboard
+ recovering an earlier zoom
+ scrolling with the keyboard
+ zooming with multiple grids 
+ adding new curves to a zoomed grid 
+ zoom to fit yaxis 
+annotating a graph 
+ curve markers 
+ legend box 
+ text box
+ caption and free text 
+ graph symbolic values 
+exportingimporting
+ clipboard
+ exporting graphics 
+ data import and export
+saving graphs
+ saving 
+ restoring
+saving data 
+ saving the data of a simulation
+ restoring simulation data 
+dc operating point 
+ schematic annotation 
+ displaying device operating point info
+ list file data
+ other methods of obtaining bias data
+ bias annotation in simplis
+ bias annotation display precision 
+ bias annotation and long transient runs 
+performance analysis
+ overview
+ example
+ histograms 
+ goal functions
+the command shell
+ command line 
+ command history 
+ message window
+ multiple commands on one line
+ scripts 
+ command line editing 
+ command line switches
+ editing the menu system
+ overview
+ procedure
+ user dened toolbars buttons 
+ message window
+commandfunction
+ introduction 
+ notation
+ command summary
+ reference
+ opengroup 
+ set 
+ show
+ unset
+ function summary 
+ function reference 
+ absrealcomplex
+ argrealcomplex
+ argradrealcomplex 
+ atanrealcomplex 
+ cosrealcomplex
+ dbrealcomplex
+ diffreal
+ exprealcomplex 
+ fftrealstring
+ firreal realreal
+ floorreal 
+ groupdelayrealcomplex 
+ histogramreal real
+ iffreal any any
+ iirreal realreal
+ imrealcomplex imagrealcomplex 
+ integreal
+ interpreal realreal real 
+ iscomplexany 
+ lengthany 
+ lnrealcomplex
+ logrealcomplex logrealcomplex
+ magrealcomplexmagnituderealcomplex 
+ maxidxrealcomplex 
+ maximarealreal string
+ maximumrealcomplexreal real 
+ meanrealcomplex
+ meanrealreal real
+ minidxrealcomplex
+ minimarealreal string
+ minimumrealcomplexreal real 
+ normrealcomplex 
+ phrealcomplexphaserealcomplex
+ phaseradrealcomplex
+ rangerealcomplexreal real 
+ rerealcomplex realrealcomplex
+ refrealcomplex 
+ rmsreal
+ rmsrealreal real
+ rndreal 
+ rootsumofsquaresrealreal real 
+ signreal
+ sinrealcomplex
+ sqrtrealcomplex 
+ sumnoiserealreal real
+ tanrealcomplex
+ truncaterealreal real 
+ unitvecreal
+ vectorreal 
+ xfromyreal realreal real
+ xyreal real
+ yfromxreal realreal
+monte carlo sensitivity and worstcase
+ a monte carlo example
+ sensitivityworstcase example
+ part tolerance specication
+ setting device tolerances 
+ model tolerances
+ matching devices 
+ random distribution
+ running monte carlo
+ overview
+ setting up a multi step monte carlo run 
+ setting up a single step monte carlo sweep 
+ setting the seed value 
+ running sensitivity and worstcase
+ overview
+ setting up a multistep sensitivity analysis
+ setting up a single step sensitivity analysis 
+ analysing montecarlo results
+ plots
+ creating histograms
+ log file 
+ analysing sensitivity and worstcase results 
+ plots
+ reports
+optimisation
+ introduction 
+ a first example simetrix 
+ running first example 
+ running first examplehtml report
+ running first examplemore runs
+ a simplis example
+ running simplis example
+ curve fitting example simetrix 
+ running curve fitting example simetrix
+ optimiser gui description 
+ circuit denition
+ optimiser options 
+ parameters 
+ specication viewtable 
+ specication viewbuttons
+ data view
+ data viewcreating a data object
+ measurement functions
+ optimiser algorithms
+ experimental algorithms 
+veriloghdl simulation
+ overview
+ documentation 
+ supported verilog simulators
+ basic operation 
+ using veriloghdl in simetrix schematics
+ creating schematic symbols
+ editing parameters 
+ module cache
+ operation
+ simulation options 
+ verilog simulator
+ timing resolution 
+ open console for verilog process 
+ tutorial 
+ procedure
+ verilog simulator interface 
+ vpi 
+ interface conguration 
+ launch script
+ verilog simulation preparation
+sundry topics
+ saving and restoring sessions 
+ overview
+ saving a session
+ restoring a session 
+ where is session data stored 
+ symbolic path names
+ overview
+ denition
+ conguration file example
+ using symbolic names
+ simetrix command line parameters
+ using startupini
+ conguration settings 
+ overview
+ default conguration location
+ application data directory 
+ specifying other locations for cong settings
+ options 
+ overview
+ using the options dialog 
+ using the set and unset commands
+ startup auto conguration 
+ overview
+ what is set up 
+ auto conguration options
+ installationcustomising 
+ colours and fonts
+ colours 
+ fonts
+ startup script
+ international character sets 
+ character encoding 
+ simetrix character encoding 
+ compatibility with older versions 
+ text editors 
+installation and licensing
+ install cd
