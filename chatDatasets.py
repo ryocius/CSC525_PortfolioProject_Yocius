@@ -8,12 +8,30 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import pipeline
+import json
 
 nltk.download("punkt")
 nltk.download("stopwords")
 summarizer = pipeline("summarization", model="t5-base")
 
 STOPWORDS = set(stopwords.words("english"))
+
+def extractTextFromJson(path, output):
+    if not os.path.exists(output):
+        with open(path, 'r') as file:
+            data = json.load(file)
+
+        rows = []
+        for entry in data:
+            if entry['ANSWERABLE'] == 'Y':
+                question = str(entry['QUESTION_TITLE'] + ' ' + entry['QUESTION_TEXT'])
+                answer = str(entry['ANSWER'])
+                rows.append({'Question': question, 'Answer': answer})
+
+        df = pd.DataFrame(rows)
+        df.to_csv(output, index=False)
+
+
 
 def extractTextFromPdf(path):
     with fitz.open(path) as pdf:
