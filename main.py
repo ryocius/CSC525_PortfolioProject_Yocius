@@ -1,3 +1,5 @@
+import os
+
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 import pandas as pd
@@ -5,8 +7,9 @@ import chatDatasets
 from CustomTrainer import CustomTrainer
 
 
-def loadQaPairs(filename="qaPairs.csv"):
-    chatDatasets.generateQaPairs()
+def loadQaPairs(filename="data/qaPairs.csv"):
+    if not os.path.exists(filename):
+        chatDatasets.generateQaPairs()
     df = pd.read_csv(filename)
     pairs = []
 
@@ -15,7 +18,7 @@ def loadQaPairs(filename="qaPairs.csv"):
         pairs.append(row['Answer'])
     return pairs
 
-def loadQaData(filename="qaPairs.csv"):
+def loadQaData(filename="data/qaPairs.csv"):
     return pd.read_csv(filename)
 
 def runChatbot():

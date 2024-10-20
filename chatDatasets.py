@@ -48,8 +48,8 @@ def createDataset(sections, filename):
     df.to_csv(filename, index=False)
 
 def getSections():
-    userManualDataset = "userManualDataset.csv"
-    userManualPath = "SIMetrixUsersManual.pdf"
+    userManualDataset = "data/userManualDataset.csv"
+    userManualPath = "data/SIMetrixUsersManual.pdf"
 
     if not os.path.exists(userManualDataset):
         sections = extractTextFromPdf(userManualPath)
@@ -115,10 +115,10 @@ def createQaPairs(headers, sections):
 def generateQaPairs():
     sections = getSections()
 
-    headersCsv = pd.read_csv("keywords.csv")
+    headersCsv = pd.read_csv("data/keywords.csv")
     headers = headersCsv['text'].tolist()
 
-    pairsFile = "qaPairs.csv"
+    pairsFile = "data/qaPairs.csv"
     if not os.path.exists(pairsFile):
         headers = [header for header in headers if pd.notna(header) and header.strip()]
 
@@ -128,6 +128,5 @@ def generateQaPairs():
 
         df = pd.DataFrame(qaPairs, columns=["Question", "Answer"])
         df.to_csv(pairsFile, index=False)
-
 
 generateQaPairs()
