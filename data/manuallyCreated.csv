@@ -1,0 +1,124 @@
+Question,Answer
+What is Simetrix,SIMetrix is a mixed-signal circuit simulator designed for ease and speed of use.
+What are the Simetrix Features,"Features
+- Closely coupled direct matrix analog and event driven digital simulator.
+- Fully integrated hierarchical schematic editor, simulator and graphical post-processor.
+- Superior convergence for both DC and transient analyses.
+- Advanced swept analyses for AC, DC, Noise and transfer function. 6 different modes available.
+- Real time noise analysis allowing noise simulation of oscillators and sampled data systems.
+- Support for IC design models such as BSIM3/4, VBIC and Hicum.
+- Cross probing of voltage, current and device power from schematic. Current and power available for
+sub-circuits.
+- Monte Carlo analysis including comprehensive tolerance specification features.
+- Full featured scripting language allowing customised waveform analysis and automated simulation
+- Verilog-A Analog Hardware Description Language
+- Mixed signal simulation using Verilog-HDL
+- Functional modelling with arbitrary non-linear source and arbitrary linear s-domain transfer
+function.
+- Arbitrary logic block for definition of any digital device using descriptive language. Supports
+synchronous, asynchronous and combinational logic as well as ROMS and RAMs.
+- Models for saturable magnetic parts including support for air-gaps.
+- User definable fixed and popup menus and key definitions."
+What is Simplis,"SIMPLIS is a circuit simulator designed for rapid modelling of switching power systems. An acronym for
+�SIMulation for Piecewise LInear System�, it is supplied with our SIMetrix/SIMPLIS product range."
+Why simulate,"Integrated circuit designers have been using analog simulation software for nearly five decades. The
+difficulty of bread-boarding and high production engineering costs have made the use of such software
+essential."
+What are the system requirements,"Windows 11 Home, Pro (including variants) and Enterprise
+Windows 10 Home, Pro and Enterprise - 64 bit editions
+
+SIMetrix will run satisfactorily on any system that meets all the following requirements:
+1. The system is running one of supported operating systems listed above
+2. The system meets the minimum hardware requirement for the operating system
+3. The system�s display has a"
+Where do I find tutorials,"On Windows the example files are distributed as packages and are installed under
+C:\ProgramData\SIMetrix Technologies\SIMetrix900\Updater\installed but it is not intended that they are
+used from that location. Instead they will be copied to your �My Documents- folder when SIMetrix starts
+for the first time, but only if you accept the option to do so."
+What is a tutorial,"This tutorial demonstrates a basic simulation on a ready to run to circuit. All you need to do is load the
+circuit and press F9 to run it. We will then make a few changes to the circuit and make some extra plots."
+How do I create a schematic,"The schematic editor has been designed to be intuitive to use and you may not need to read too much about
+it. Here we describe the less obvious procedures.If you have SIMetrix/SIMPLIS, make sure you are in the
+correct mode before entering a schematic. See above section."
+How do I place a part,"If it is a simple device which only needs a value such as a resistor or capacitor, select the appropriate
+symbol from the tool bar or Place menu. For other devices that require a part number, it is easiest to use
+the model library browser. Select menu Place | From Model Library and select your desired device."
+How do I change a part,"First select it then double click or select schematic popup Edit Part... or press F7. A dialog box
+appropriate for the type of part will be displayed. For devices requiring a model name, a list of available
+types will appear."
+"How do I rotate, mirror, flip, or transform a part","Use the Rotate toolbar button (see diagram above) or key F5 to rotate a part.
+This operation can be performed while a part is being placed or while a block is being moved or copied
+(see below).
+You can also select a part or block then press the rotate button/key to rotate in-situ.
+To mirror a part or block through the y-axis, press the Mirror toolbar button or F6 key.
+To flip a part or block (mirror about x-axis), press Flip button or press shift-F6."
+How do I add wiring,"There are a number of ways of placing a wire:
+Method 1: Place the mouse cursor close to an unselected symbol pin or wire end. Notice the cursor shape
+change to depict a pen symbol. Now left click to mark the start point then left click again to mark the final
+point. SIMetrix will automatically route the wire for you. You can also mark intermediate points if you
+would prefer to define the precise route rather than accept the auto-routed connection.
+Method 2: If you have a three button mouse or scroll wheel mouse you can start a wire by clicking the
+middle button/scroll wheel. Clicking the middle button or scroll wheel a second time will complete the
+wire and start a new one. Click the right button or press escape to terminate wiring.
+Method 3: Start a wire by pressing F3 or double clicking the left button. Single clicking the left button will
+complete the wire and start a new one. Click the right button or press escape to terminate wiring.
+Method 4: Press the Wiring tool button on the toolbar. You can start a wire by single clicking the left
+button, otherwise continue as described above. Press the Wire button again to cancel this mode."
+What are the circuit rules,"The following design rules must be observed for the simulation to run correctly. Note that most circuits
+obey them anyway and they do not impose serious limitations on the capability of the simulator.
+- There must always be at least one ground symbol on every circuit.
+- Every node on the circuit must have a dc path to ground. For example, two capacitors in series form
+a node which does not have DC path to ground. If you do have a floating node, you can provide a
+DC path to ground by connecting a high value resistor (e.g. 1G) between it and ground. Capacitors
+without initial conditions do not have a DC path. But if you set an initial condition on a capacitor a
+DC path is formed and this method is an alternative to using a resistor to provide a DC path.
+Also note that inductors with an initial condition do not have a DC path. This is because they are
+treated as a constant current during the calculation of the DC bias point.
+If using a high value resistor to make a DC path for a transformer winding, we recommend that you
+also place a low value capacitor in parallel with it. This is not always necessary but can help avoid
+problems with transient analysis convergence. It is best to choose a realistic value that would
+represent what the capacitance would really be in the real-world circuit.
+- There must not be any zero resistance loops constructed from voltage sources, inductors without
+initial conditions or capacitors with initial conditions. If you do have such loops you can insert a low
+value resistor. You should choose a value that represents what the resistance would be in the real
+world, e.g. the actual winding resistance of an inductor, and never use an unrealistically small value.
+Very small resistances (e.g. 1 fempto-Ohm) can cause convergence problems.
+For loops containing inductors you can break the loop by adding an initial condition to the inductor
+instead of adding a resistor.
+Failure to observe the above usually leads to a Singular Matrix error."
+How do I set up a SIMEtrix Simulation,"In this section we explain how to setup the most commonly used analysis modes in both SIMetrix and
+SIMPLIS (SIMetrix/SIMPLIS product only)
+For more comprehensive details on analysis modes, see Analysis Modes for SIMetrix and SIMPLIS
+Analysis Modes for SIMPLIS ."
+How do I run the simulator,"You can run the simulator using a number of methods:
+- Select the Simulator | Run Schematic menu item
+- Press F9
+- Click the Run button in the Simulator | Choose Analysis... dialog box
+- Click on the play button
+A dialog box will show the status of the simulation.
+You can pause the simulation by selecting the Pause button on the simulator status dialog box. To restart
+select the Resume button (the Pause button changes name when simulation pauses) or the Simulator |
+Resume menu item. There is no obligation to resume a simulation that has been paused. If you start a new
+run after having paused the previous one, you will be asked whether you wish to abandon the pending
+simulation run."
+How do I plot results,"SIMetrix provides two methods of creating plots of simulated results.
+The first approach is to fix voltage or current probes to the schematic before or during a run. SIMetrix will
+then generate graphs of the selected voltages and/or currents automatically. The probes have a wide range
+42
+SIMetrix/SIMPLIS User�s Manual
+4.6. Plotting Simulation Results
+of options which allow you to specify - for example - how the graphs are organised and when and how
+often they are updated.
+The second approach is to randomly probe the circuit after the run is complete. (You can also do this
+during a run by pausing first). With this approach, the graph will be created as you point the probe but will
+not be updated on a new run.
+You do not need to make any decisions on how you wish to probe your circuit before starting the run. You
+can enter a circuit without any fixed probes, run it, then randomly probe afterwards. Alternatively, you can
+place - say - a single fixed probe on an obvious point of interest, then randomly probe to investigate the
+detailed behaviour of your circuit.
+Fixed schematic probes are limited to single ended voltages and currents and differential voltages. The
+random probing method allows you to plot anything you like including device power, FFTs, arbitrary
+expressions of simulation results and X-Y plots such as Nyquist diagrams. It is possible to set up fixed
+probes to plot arbitrary expressions of signals but this requires manually entering the underlying simulator
+command, the .GRAPH control. There is no direct schematic support for this. For details of the .GRAPH
+control see the �Command Reference- chapter of the Simulator Reference Manual."

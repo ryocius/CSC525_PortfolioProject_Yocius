@@ -8,7 +8,7 @@ import chatDatasets
 from CustomTrainer import CustomTrainer
 
 
-def loadQaPairs(filename="data/qaPairs.csv"):
+def loadQaPairs(filename="data/qaPairsAug.csv"):
     if not os.path.exists(filename):
         chatDatasets.generateQaPairs()
     df = pd.read_csv(filename)
@@ -19,8 +19,10 @@ def loadQaPairs(filename="data/qaPairs.csv"):
         pairs.append(str(row['Answer']))
     return pairs
 
-def loadQaData(filename="data/qaPairs.csv"):
+
+def loadQaData(filename="data/qaPairsAug.csv"):
     return pd.read_csv(filename)
+
 
 def runUi():
     def on_entry_click(event):
@@ -48,7 +50,6 @@ def runUi():
             chatOut_text.insert(tk.END, f"{response}\n")
             chatOut_text.config(state='disabled')
             entry.delete(0, tk.END)
-
 
     root = tk.Tk()
     root.title("SIMetrix Help Desk")
@@ -107,7 +108,6 @@ if not os.path.exists(dbPath):
     devPairs = loadQaPairs("data/dev_Q_A.csv")
     trnPairs = loadQaPairs("data/trn_Q_A.csv")
 
-
     corpusTrainer = ChatterBotCorpusTrainer(chatbot)
     corpusTrainer.train('chatterbot.corpus.english')
 
@@ -118,7 +118,6 @@ if not os.path.exists(dbPath):
         trainer.train(pairs)
         trainer.train(devPairs)
         trainer.train(trnPairs)
-
 
     print("Model trained and saved.")
 else:
@@ -138,7 +137,3 @@ else:
 
 runUi()
 # runConsole()
-
-
-
-

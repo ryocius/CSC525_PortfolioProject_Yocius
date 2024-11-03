@@ -1,3 +1,4 @@
+import random
 import nltk
 import os
 import re
@@ -9,12 +10,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import pipeline
 import json
+from nltk.corpus import wordnet
 
 nltk.download("punkt")
 nltk.download("stopwords")
 summarizer = pipeline("summarization", model="t5-base")
 
 STOPWORDS = set(stopwords.words("english"))
+
 
 def extractTextFromJson(path, output):
     if not os.path.exists(output):
@@ -32,22 +35,22 @@ def extractTextFromJson(path, output):
         df.to_csv(output, index=False)
 
 
-
 def extractTextFromPdf(path):
     with fitz.open(path) as pdf:
         text = ""
         for page in pdf:
             text += page.get_text()
 
-    section_pattern = re.compile(r'\d+\.\d+.*')
-    sections = section_pattern.split(text)
-    headers = section_pattern.findall(text)
+    sectionPattern = re.compile(r'\d+\.\d+.*')
+    sections = sectionPattern.split(text)
+    headers = sectionPattern.findall(text)
 
-    combined_sections = [
+    combinedSections = [
         "{} {}".format(header, text.replace('\n', ' '))
         for header, text in zip(headers, sections[1:])
     ]
-    return combined_sections
+    return combinedSections
+
 
 def preprocessText(text):
     text = re.sub("SIMetrix/SIMPLIS User’s Manual", "", text)
@@ -55,6 +58,7 @@ def preprocessText(text):
     text = text.lower()
     words = [word for word in word_tokenize(text) if word not in STOPWORDS]
     return ' '.join(words)
+
 
 def createDataset(sections, filename):
     filtered_sections = [
@@ -64,6 +68,7 @@ def createDataset(sections, filename):
     data = {'text': [preprocessText(section) for section in filtered_sections]}
     df = pd.DataFrame(data)
     df.to_csv(filename, index=False)
+
 
 def getSections():
     userManualDataset = "data/userManualDataset.csv"
@@ -76,7 +81,8 @@ def getSections():
     df = pd.read_csv(userManualDataset)
     return df['text'].tolist()
 
-def generate_question(header):
+
+def generateQuestion(header):
     header = header.lower()
 
     if "installation" in header:
@@ -94,8 +100,8 @@ def generate_question(header):
     if "importing" in header:
         return f"How do you import {header}?"
 
-
     return f"What does the '{header}' section cover?"
+
 
 def extractBestMatch(header, sections):
     vectorizer = TfidfVectorizer()
@@ -107,14 +113,12 @@ def extractBestMatch(header, sections):
 
 def extractAnswer(section):
     maxInLen = 1024
-    maxOutLen = 150
 
     if len(section.split()) < maxInLen:
-        summary = summarizer(section, max_length=maxOutLen, min_length=5, do_sample=False)
-        print(summary)
-        return summary[0]['summary_text']
+        return section
 
     return ' '.join(sent_tokenize(section)[:3])
+
 
 def createQaPairs(headers, sections):
     qa_pairs = []
@@ -122,7 +126,7 @@ def createQaPairs(headers, sections):
     for header in headers:
         best_section = extractBestMatch(header, sections)
 
-        question = generate_question(header)
+        question = generateQuestion(header)
         answer = extractAnswer(best_section)
 
         qa_pairs.append((question, answer))
@@ -137,6 +141,8 @@ def generateQaPairs():
     headers = headersCsv['text'].tolist()
 
     pairsFile = "data/qaPairs.csv"
+    manuallyCreatedFile = "data/manuallyCreated.csv"
+
     if not os.path.exists(pairsFile):
         headers = [header for header in headers if pd.notna(header) and header.strip()]
 
@@ -145,6 +151,61 @@ def generateQaPairs():
         qaPairs = createQaPairs(headers, sections)
 
         df = pd.DataFrame(qaPairs, columns=["Question", "Answer"])
+
+        if os.path.exists(manuallyCreatedFile):
+            manually_created_df = pd.read_csv(manuallyCreatedFile)
+            df = pd.concat([df, manually_created_df], ignore_index=True)
+        else:
+            print(f"Manually created file {manuallyCreatedFile} does not exist.")
+
         df.to_csv(pairsFile, index=False)
 
-generateQaPairs()
+
+def generateSynonymPermutations(text, num_permutations=5):
+    words = text.split()
+    permutations = []
+
+    for _ in range(num_permutations):
+        newWords = []
+        for word in words:
+            synonyms = wordnet.synsets(word)
+            if synonyms:
+                synonymList = synonyms[0].lemmas()
+                if synonymList:
+                    newWord = synonymList[random.randint(0, len(synonymList)-1)].name()
+                    newWords.append(newWord.replace('_', ' '))
+                else:
+                    newWords.append(word)
+            else:
+                newWords.append(word)
+        permutations.append(" ".join(newWords))
+
+    return permutations
+
+
+def augmentQaPairs():
+    pairsFile = "data/qaPairsAug.csv"
+    originalFile = "data/qaPairs.csv"
+
+    if not os.path.exists(originalFile):
+        print(f"Original file {originalFile} does not exist.")
+        return
+
+    df = pd.read_csv(originalFile)
+
+    augRows = []
+    for index, row in df.iterrows():
+        origQ = row['Question']
+        permutations = generateSynonymPermutations(origQ, num_permutations=5)
+        for newQ in permutations:
+            newRow = row.copy()
+            newRow['Question'] = newQ
+            augRows.append(newRow)
+
+    augDf = pd.DataFrame(augRows)
+
+    resultDf = pd.concat([df, augDf], ignore_index=True)
+
+    resultDf.to_csv(pairsFile, index=False)
+
+
